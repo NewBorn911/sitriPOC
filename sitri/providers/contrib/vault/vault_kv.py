@@ -67,7 +67,7 @@ class VaultKVConfigProvider(ConfigProvider):
 
         response = self._vault.secrets.kv.v1.read_secret(**request_params)
 
-        return response["data"].get(key)
+        return response["data"]["data"].get(key)
 
     def keys(self, mount_point: str | None = None, secret_path: str | None = None, **kwargs: t.Any) -> t.List[str]:
         """keys.
