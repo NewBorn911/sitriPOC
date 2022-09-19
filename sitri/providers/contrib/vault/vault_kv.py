@@ -65,7 +65,7 @@ class VaultKVConfigProvider(ConfigProvider):
             "mount_point": mount_point if mount_point else self._mount_point,
         }
 
-        response = self._vault.secrets.kv.v1.read_secret(**request_params)
+        response = self._vault.secrets.kv.v2.read_secret(**request_params)
 
         return response["data"]["data"].get(key)
 
@@ -84,6 +84,6 @@ class VaultKVConfigProvider(ConfigProvider):
             "mount_point": mount_point if mount_point else self._mount_point,
         }
 
-        response = self._vault.secrets.kv.v1.read_secret(**request_params)
+        response = self._vault.secrets.kv.v2.read_secret(**request_params)
 
-        return list(response["data"].keys())
+        return list(response["data"]["data"].keys())
